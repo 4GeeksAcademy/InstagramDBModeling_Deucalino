@@ -23,6 +23,10 @@ Here we are tracking the previous and upcoming changes (roadmap), pull request t
 - [x] Added documentation for [data validations](https://github.com/4GeeksAcademy/flask-rest-hello/blob/master/docs/DATA_VALIDATIONS.md)
 - [x] Added documentation for [SQL Alchemy operations](https://github.com/4GeeksAcademy/flask-rest-hello/edit/master/docs/MYSQL.md).
 
+### August 10, 2022
+- [x] Added ./src/tests/ folder for unit testing
+- [x] Added documentation for tests
+
 ## Roadmap v2.0
 
 - [ ] Update documentation with more examples
