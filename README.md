@@ -56,6 +56,11 @@ $ pipenv run migrate (to create the database)
 $ pipenv run start (to start the flask webserver)
 ```
 
+## Running your tests
+
+```
+pipenv run test
+```
 
 ## Deploy to Heroku
 

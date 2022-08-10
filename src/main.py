@@ -37,6 +37,9 @@ def handle_hello():
         "msg": "Hello, this is your GET /user response "
     }
 
+    all_users = User.query.all()
+    response_body['data'] = [u.serialize() for u in all_users]
+
     return jsonify(response_body), 200
 
 # this only runs if `$ python src/main.py` is executed
