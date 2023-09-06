@@ -42,7 +42,7 @@ class  Media(db.Model):
      __tablename__='media'
      id=db.Column(db.Integer, primary_key=True)
      post_id=db.Column(db.String(450), db.ForeignKey('post.id'))
-     type=db.Column(db.Enum("picture","video"),name="post_type", nullable=False)
+     type=db.Column(db.Enum("picture","video",name="post_type"), nullable=False)
      description=db.Column(db.String(350))
      publicattion_date=db.Column(db.DateTime, nullable=False)
      author_id=db.Column(db.Integer, db.Foreignkey('user.id'),nullable=False)
@@ -61,17 +61,17 @@ class  Media(db.Model):
             # do not serialize the password, its a security breach
         }
 class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    type=db.Column(db.Enum("picture","video",name="post_types"
-                           "), nullable=False)
-    description=db.Column(db.String(350))
-    publicattion_date=db.Column(db.DateTime, nullable=False)
-    author_id=db.Column(db.Integer, db.Foreignkey('user.id'),nullable=False)
-    def __repr__(self):
+ __tablename__='post'
+id = db.Column(db.Integer, primary_key=True)
+type=db.Column(db.Enum("picture","video",name="post_types"),nullable=False)
+description=db.Column(db.String(350))
+publicattion_date=db.Column(db.DateTime, nullable=False)
+author_id=db.Column(db.Integer, db.Foreignkey('user.id'),nullable=False)
+def __repr__(self):
 
         return '<Post %r>' % self.id
 
-    def serialize(self):
+def serialize(self):
         return {
             "id": self.id,
             "type":self.type,
@@ -81,16 +81,17 @@ class Post(db.Model):
             # do not serialize the password, its a security breach
         }
 class Comments(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text=db.Column(db.String(350), nullable=False)
-    post_id=db.Column(db.Integer, db.Foreignkey('post.id'),nullable=False)
-    publicattion_date=db.Column(db.DateTime, nullable=False)
-    author_id=db.Column(db.Integer, db.Foreignkey('user.id'),nullable=False)
-    def __repr__(self):
+  __tablename__='comments'
+id = db.Column(db.Integer, primary_key=True)
+text=db.Column(db.String(350), nullable=False)
+post_id=db.Column(db.Integer, db.Foreignkey('post.id'),nullable=False)
+publicattion_date=db.Column(db.DateTime, nullable=False)
+author_id=db.Column(db.Integer, db.Foreignkey('user.id'),nullable=False)
+def __repr__(self):
 
         return '<Comments %r>' % self.id
 
-    def serialize(self):
+def serialize(self):
         return {
             "id": self.id,
             "text":self.text,

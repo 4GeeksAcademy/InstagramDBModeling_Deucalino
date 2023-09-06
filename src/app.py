@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from admin import setup_admin
-from models import db, User
+from models import db, User,Followers,Media,Post,Comments
 #from models import Person
 
 app = Flask(__name__)
@@ -37,14 +37,41 @@ def sitemap():
     return generate_sitemap(app)
 
 @app.route('/user', methods=['GET'])
-def handle_hello():
+def get_users():
+    results=[]
+    users=User.query.all()
+    for user in users:
+     results.append(user.serialize())
+     return jsonify(results),200
+@app.route('/followers', methods=['GET'])
+def get_followers():
+    results=[]
+    followers=Followers.query.all()
+    for followers in followers:
+     results.append(followers.serialize())
+     return jsonify(results),200
+@app.route('/media', methods=['GET'])
+def get_media():
+    results=[]
+    users=Media.query.all()
+    for media in media:
+     results.append(media.serialize())
+     return jsonify(results),200
+@app.route('/post', methods=['GET'])
+def get_post():
+    results=[]
+    users=Post.query.all()
+    for post in post:
+     results.append(post.serialize())
+     return jsonify(results),200
 
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
-
-    return jsonify(response_body), 200
-
+@app.route('/comments', methods=['GET'])
+def get_comments():
+    results=[]
+    users=Comments.query.all()
+    for comments in comments:
+     results.append(comments.serialize())
+     return jsonify(results),200
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
